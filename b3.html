@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>b4</title>
+	<style>
+		table,tr, td {
+		  border: 1px solid #000;
+		  border-collapse:collapse;
+		}
+		td {
+		  padding: 10px;
+		}
+
+		button {
+		  cursor: pointer;
+		}
+
+		.red {
+		  color: red;
+		}
+
+		.green {
+		  color: green;
+		}
+	</style>
+</head>
+<body>
+
+	<table>
+	  <tr>
+	    <td>Mã Sv</td>
+	    <td><input id='masv' type='text' ></td>    
+	    <td>Họ Tên</td>
+	    <td><input id='ho-ten' type='text' ></td>
+	    <td>Khối Thi</td>
+	    <td><select id="khoi-thi">
+	    	<option value="A">A</option>
+	    	<option value="D">D</option>
+	    	<option value="C">C</option>
+	    </select></td>
+	  </tr>
+	  <tr>
+	    <td>Điểm Toán</td>
+	    <td><input id='toan' type='number' ></td>    
+	    <td>Điểm Văn</td>
+	    <td><input id='van' type='number' ></td>
+	    <td>Điểm Ngoại Ngữ</td>
+	    <td><input id='anh' type='number' ></td>
+	  </tr>
+	  <tr>
+	    <td>Tổng Điểm</td>
+	    <td id='tong-diem'></td>    
+	    <td><button id='ket-qua'>Kết Quả</button></td>
+	  </tr>
+	</table>
+
+<p class="err"></p>
+
+
+	<script>
+		var maSv = document.querySelector('#masv');
+		var hoTen = document.querySelector('#ho-ten');
+		var khoiThi = document.querySelector('#khoi-thi');
+		var diemToan = document.querySelector('#toan');
+		var diemVan = document.querySelector('#van');
+		var diemAnh = document.querySelector('#anh');
+		var tongDiem = document.querySelector('#tong-diem');
+		var ketQua = document.querySelector('#ket-qua');
+		var err = document.querySelector('.err');
+
+		ketQua.onclick = function() {
+		  if(!maSv.value || !hoTen.value || !khoiThi.value || !diemToan.value || !diemVan.value || !diemAnh.value) {
+		    err.classList.add('red');
+		    err.innerText = 'Phải nhập đủ các trường!!!';
+		  }
+		  else if(diemToan.value<0||diemToan.value>10 || diemVan.value<0||diemVan.value>10 ||diemAnh.value<0||diemAnh.value>10) {
+		     err.classList.add('red');
+		    err.innerText = 'Điểm toán , văn, anh phải 0 - 10!!';
+		}
+  
+  
+		  else {
+		    err.innerText = '';
+		    switch(khoiThi.value) {
+		      case 'A':
+		      case 'a':
+		        tongDiem.innerText = parseInt(diemToan.value*2) + parseInt(diemVan.value) + parseInt(diemAnh.value);
+		        break;
+		      case 'D':
+		      case 'd':
+		        tongDiem.innerText = parseInt(diemToan.value) + parseInt(diemVan.value) + parseInt(diemAnh.value*2);
+		        break;
+		      case 'C':
+		      case 'c':
+		        tongDiem.innerText = parseInt(diemToan.value) + parseInt(diemVan.value*2) + parseInt(diemAnh.value);
+		        break;
+		      default:
+		        break;
+		    }
+		    
+		    if(parseInt(tongDiem.innerText) >= 20 && diemToan.value >= 2 && diemVan.value >= 2 && diemAnh.value >= 2) {
+		        err.classList.remove('red');
+		        err.classList.add('green');
+		        err.innerText = 'Sv Qua!!!!!!!!!';
+		    } else {
+		        err.classList.remove('green');
+		        err.classList.add('red');
+		        err.innerText = 'Sv Trượt!!!!!!!';
+		    }
+		  } 
+		}
+	</script>
+</body>
+</html>		
