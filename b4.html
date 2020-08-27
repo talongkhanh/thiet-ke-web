@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>b4</title>
+</head>
+<body>
+	
+	<input id='num' type="number">
+	<h3>Tổng Nguyên Tố: <span id="kq"></span></h3>
+	<button id="tinh">Tính</button>
+
+	<script>
+		var num = document.querySelector('#num');
+		var kq = document.querySelector('#kq');
+		var tinh = document.querySelector('#tinh');
+		tinh.onclick = function() {
+			var tong = 0;
+			for(var i = 2; i<= num.value; i++) {
+				var mark = 1;
+				for(var j = 2; j<= Math.sqrt(i); j++) {
+					if(i % j == 0) {
+						mark = 0;
+					}
+				}
+				if(mark == 1) {
+					tong += i;
+				}
+			}
+			kq.innerText = tong;
+		}
+		
+	</script>
+</body>
+</html>							

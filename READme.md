@@ -4,3 +4,5 @@
 ` Nhập các trường và bắt lỗi để trống hoặc bằng regex`
 ## bai3
 ` Nhập Các Môn toán văn anh và tính điểm theo khối thi kèm bắt lỗi `
+## bai3
+`Tinh Tổng các số nguyên tố từ 1 đến n`
